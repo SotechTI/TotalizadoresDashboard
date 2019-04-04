@@ -35,6 +35,17 @@ class Funcoes {
        
        return $valorTotal = $row['SUM(transacao_valor)'];
    }
+   
+   public function totalizarValorBandeirasAdquirente($codAdquirente, $codBandeira, $codTipoTransacao, $periodo, $valorTotal) {
+       $sqlInsert = "INSERT INTO valorTotalBandeirasRede (id, idAdquirente, idBandeira, idTipoTransacao, periodo, valorTotal) "
+               . "VALUES ('', '".$codAdquirente."', '".$codBandeira."', '".$codTipoTransacao."', '".$periodo."', '".$valorTotal."')";
+       
+       if ($this->con->conexao->query($sqlInsert)){
+           return true;
+       }else{
+           return $this->con->conexao->error;
+       }
+   }
     
     function getCon() {
         return $this->con;
